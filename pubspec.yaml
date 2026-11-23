@@ -1,0 +1,20 @@
+name: zihin_motoru
+description: "Zihin Antrenmanı ailesinin ortak motoru: hafıza, dikkat, hız ve mantık egzersizleri."
+publish_to: none
+version: 1.0.0
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  studio_core:
+    git:
+      url: https://github.com/taktemurr-ops/studio-core
+      ref: 71553283c36d7f672f375de54219020461cead06
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
