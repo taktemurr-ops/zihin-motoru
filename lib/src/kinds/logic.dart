@@ -6,6 +6,8 @@ import 'package:studio_core/core/rng.dart';
 
 import '../core.dart';
 import '../texts.dart';
+import 'dual.dart';
+import 'faces.dart';
 import 'memory.dart';
 import 'speed.dart';
 
@@ -488,6 +490,8 @@ const Map<String, BrainKind> _dailyPool = {
   'hizli-hesap': MathKind(),
   'oruntu': PatternKind(),
   'dondurme': RotationKind(),
+  'yuz-isim': FaceNameKind(),
+  'cift-gorev': DualTaskKind(),
 };
 
 class DailyKind extends BrainKind {
