@@ -149,7 +149,7 @@ class GridMemoryKind extends BrainKind {
 
   @override
   BPuzzle? make(int d, SeededRandom r) {
-    final n = 3 + math.min(3, d ~/ 3);
+    final n = 3 + math.min<int>(3, d ~/ 3);
     final rounds = <List<int>>[];
     for (var k = 0; k < 5; k++) {
       final c = math.min(n * n - 2, 3 + k + d ~/ 2);

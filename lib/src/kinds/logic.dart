@@ -304,7 +304,7 @@ class RotationKind extends BrainKind {
     while (cells.length < size && g++ < 200) {
       final c = r.pick(cells.toList());
       final dirs = [10, -10, 1, -1];
-      final n = c + r.pick(dirs);
+      final n = c + r.pick<int>(dirs);
       if (n ~/ 10 < 1 || n ~/ 10 > 8 || n % 10 < 1 || n % 10 > 8) continue;
       cells.add(n);
     }
