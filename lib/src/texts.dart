@@ -1,5 +1,7 @@
 import 'package:studio_core/core/strings.dart';
 
+import 'words.dart';
+
 /// zihin-motoru'nun kısa metinleri (33 dil). Sıra:
 /// tr en de es fr ar fa he ur ru uk pl cs ro hu el it pt nl sv da nb fi ja ko zh hi bn id ms th vi fil
 const Map<String, List<String>> kZihinTexts = {
@@ -38,5 +40,5 @@ const List<List<String>> kColorNames = [
   ['TURUNCU', 'ORANGE', 'ORANGE', 'NARANJA', 'ORANGE', 'برتقالي', 'نارنجی', 'כתום', 'نارنجی', 'ОРАНЖЕВЫЙ', 'ПОМАРАНЧЕВИЙ', 'POMARAŃCZOWY', 'ORANŽOVÁ', 'PORTOCALIU', 'NARANCS', 'ΠΟΡΤΟΚΑΛΙ', 'ARANCIONE', 'LARANJA', 'ORANJE', 'ORANGE', 'ORANGE', 'ORANSJE', 'ORANSSI', 'オレンジ', '주황', '橙', 'नारंगी', 'কমলা', 'JINGGA', 'OREN', 'ส้ม', 'CAM', 'KAHEL'],
 ];
 
-String bt(String lang, String key) => Strings.pick(kZihinTexts[key]!, lang);
+String bt(String lang, String key) => Strings.pick(kZihinTexts[key] ?? kZihinTexts2[key]!, lang);
 String colorName(String lang, int i) => Strings.pick(kColorNames[i], lang);
