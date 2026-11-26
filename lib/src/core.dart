@@ -206,17 +206,31 @@ class BrainBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
+    final look = StudioLook.of(context);
     return Container(
       margin: const EdgeInsets.fromLTRB(8, 4, 8, 0),
       padding: const EdgeInsets.symmetric(horizontal: 12),
       height: 48,
-      decoration: BoxDecoration(color: scheme.surface.withValues(alpha: 0.92), borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.28),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: look.accent.withValues(alpha: 0.45), width: 1.2),
+      ),
       child: Row(children: [
-        Text(left, style: const TextStyle(fontWeight: FontWeight.w700)),
+        Text(left, style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16, color: look.number)),
         const SizedBox(width: 8),
-        Expanded(child: FittedBox(fit: BoxFit.scaleDown, child: Text(status, maxLines: 1))),
-        if (onHint != null) IconButton(tooltip: bt(lang, 'hint'), onPressed: onHint, icon: const Icon(Icons.lightbulb_outline)),
+        Expanded(
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(status, maxLines: 1, style: const TextStyle(fontWeight: FontWeight.w700, color: kStudioSubtle)),
+          ),
+        ),
+        if (onHint != null)
+          IconButton(
+            tooltip: bt(lang, 'hint'),
+            onPressed: onHint,
+            icon: const Icon(Icons.lightbulb_rounded, color: StudioLook.gold),
+          ),
       ]),
     );
   }

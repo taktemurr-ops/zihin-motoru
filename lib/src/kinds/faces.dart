@@ -5,6 +5,7 @@ import 'package:studio_core/app/services/audio.dart';
 import 'package:studio_core/core/rng.dart';
 
 import '../core.dart';
+import '../studio_chrome.dart';
 import '../texts.dart';
 
 // ---------------------------------------------------------------- Yüz ve İsim
@@ -568,7 +569,7 @@ class _FaceViewState extends State<_FaceView> with Ticker {
       _Phase.study => _studyView(lang),
       _Phase.wait => Center(
           child: Column(mainAxisSize: MainAxisSize.min, children: [
-            const Icon(Icons.hourglass_bottom, size: 64, color: BColors.accent),
+            Icon(Icons.hourglass_bottom, size: 64, color: StudioLook.of(context).accent),
             const SizedBox(height: 12),
             Text(bt(lang, 'yourTurn'), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
           ]),

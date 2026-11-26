@@ -127,7 +127,7 @@ List<String> unreadableTexts(WidgetTester tester, {double min = 3.0}) {
     final icon = (span.style?.fontFamily ?? '').contains('MaterialIcons');
     if (!icon && _decorative(plain)) continue;
     final color = span.style?.color;
-    if (color == null || color.a < 0.3) continue;
+    if (color == null || color.a < 0.36) continue;
     // Görünmez (saydamlıkla gizlenmiş) yazılar atlanır.
     var hidden = false;
     e.visitAncestorElements((a) {

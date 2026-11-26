@@ -5,6 +5,7 @@ import 'package:studio_core/app/services/audio.dart';
 import 'package:studio_core/core/rng.dart';
 
 import '../core.dart';
+import '../studio_chrome.dart';
 import '../texts.dart';
 
 // ---------------------------------------------------------------- Hafıza dizisi
@@ -425,7 +426,7 @@ class _NBackViewState extends State<_NBackView> with Ticker {
           );
         }),
       ),
-      Text(feedback, style: TextStyle(fontSize: 28, color: feedback == '✓' ? BColors.good : BColors.bad)),
+      Text(feedback, style: TextStyle(fontSize: 28, color: feedback == '✓' ? StudioLook.good : StudioLook.bad)),
       Padding(
         padding: const EdgeInsets.all(12),
         child: SizedBox(

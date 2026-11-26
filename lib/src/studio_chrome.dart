@@ -18,7 +18,18 @@ ThemeData studioThemeOf(BuildContext context) {
   final hit = _cache[look];
   if (hit != null) return hit;
   if (_cache.length > 8) _cache.clear();
-  return _cache[look] = buildStudioTheme(look);
+  final base = buildStudioTheme(look);
+  // Seçili çipte beyaz yazı okunur kalsın: vurgu rengi koyu zemine karıştırılır.
+  final chipSel = Color.lerp(look.base, look.accent, 0.45)!;
+  return _cache[look] = base.copyWith(
+    chipTheme: base.chipTheme.copyWith(
+      selectedColor: chipSel,
+      secondarySelectedColor: chipSel,
+      checkmarkColor: Colors.white,
+      secondaryLabelStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800),
+      side: BorderSide(color: look.accent.withValues(alpha: 0.55)),
+    ),
+  );
 }
 
 /// Alt ağacı onaylı koyu temayla çizer; buradan açılan diyalog ve alt
