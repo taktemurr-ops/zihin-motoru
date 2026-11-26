@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:studio_core/app/game_api.dart';
 import 'package:studio_core/core/game_rules.dart';
+import 'package:studio_core/core/global_daily.dart';
 import 'package:studio_core/core/level_plan.dart';
 import 'package:studio_core/core/missions.dart';
 import 'package:studio_core/core/rng.dart';
@@ -70,6 +71,18 @@ class BrainRules extends GameRules<BLevel> {
 
   @override
   int get levelCount => levels;
+
+  /// Günün Bulmacası: bütün zihin oyunları katılır; sıralama puana göre.
+  @override
+  bool get globalDaily => true;
+
+  @override
+  DailyRank get dailyRank => DailyRank.score;
+
+  /// Herkese aynı günlük tur (oyun + UTC günü tohumu), orta zorluk 3–6.
+  @override
+  LevelSpec globalDailySpec(String utcDay) =>
+      GlobalDaily.defaultSpec(gameId, utcDay, difficulty: GlobalDaily.defaultDifficulty(utcDay) - 1);
 
   @override
   List<String> get optionalMechanics => const [];
