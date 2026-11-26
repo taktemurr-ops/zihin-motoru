@@ -247,7 +247,9 @@ class _PatternViewState extends State<_PatternView> with Ticker {
                 margin: const EdgeInsets.all(3),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(border: Border.all(color: StudioLook.of(context).accent, width: 2), borderRadius: BorderRadius.circular(10)),
-                child: Text('?', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: StudioLook.of(context).accent)),
+                child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text('?', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: StudioLook.of(context).accent))),
               ),
             ]),
           );

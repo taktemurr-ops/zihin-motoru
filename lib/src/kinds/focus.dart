@@ -177,9 +177,13 @@ class _DigitViewState extends State<_DigitView> with Ticker {
         flex: 4,
         child: Center(
           child: showing
-              ? AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 120),
-                  child: Text(shown >= 0 ? '${rd.digits[shown]}' : '', key: ValueKey(shown), style: TextStyle(fontSize: 120, fontWeight: FontWeight.w900, color: StudioLook.of(context).accent)),
+              // Kısa ekranda ve büyük yazıda rakam alana sığacak kadar küçülür.
+              ? FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 120),
+                    child: Text(shown >= 0 ? '${rd.digits[shown]}' : '', key: ValueKey(shown), style: TextStyle(fontSize: 120, fontWeight: FontWeight.w900, color: StudioLook.of(context).accent)),
+                  ),
                 )
               : Wrap(spacing: 6, runSpacing: 6, alignment: WrapAlignment.center, children: [
                   for (var i = 0; i < rd.digits.length; i++)
