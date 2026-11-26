@@ -1,5 +1,6 @@
 import 'core.dart';
 import 'kinds/dual.dart';
+import 'kinds/ek4.dart';
 import 'kinds/faces.dart';
 import 'kinds/focus.dart';
 import 'kinds/logic.dart';
@@ -23,6 +24,9 @@ const Map<String, BrainKind> kBrainKinds = {
   'rakam-dizisi': DigitSpanKind(),
   'gorsel-arama': VisualSearchKind(),
   'kelime-hafizasi': WordMemoryKind(),
+  'kestirme': EstimateKind(),
+  'iz-surme': TrailKind(),
+  'ok-yonu': FlankerKind(),
 };
 
 BrainRules brainRulesFor(String gameId, String kind) => brainRules(gameId, kBrainKinds[kind]!);

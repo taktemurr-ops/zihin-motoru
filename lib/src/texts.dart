@@ -1,5 +1,6 @@
 import 'package:studio_core/core/strings.dart';
 
+import 'texts_ek4.dart';
 import 'words.dart';
 
 /// zihin-motoru'nun kısa metinleri (33 dil). Sıra:
@@ -40,5 +41,11 @@ const List<List<String>> kColorNames = [
   ['TURUNCU', 'ORANGE', 'ORANGE', 'NARANJA', 'ORANGE', 'برتقالي', 'نارنجی', 'כתום', 'نارنجی', 'ОРАНЖЕВЫЙ', 'ПОМАРАНЧЕВИЙ', 'POMARAŃCZOWY', 'ORANŽOVÁ', 'PORTOCALIU', 'NARANCS', 'ΠΟΡΤΟΚΑΛΙ', 'ARANCIONE', 'LARANJA', 'ORANJE', 'ORANGE', 'ORANGE', 'ORANSJE', 'ORANSSI', 'オレンジ', '주황', '橙', 'नारंगी', 'কমলা', 'JINGGA', 'OREN', 'ส้ม', 'CAM', 'KAHEL'],
 ];
 
-String bt(String lang, String key) => Strings.pick(kZihinTexts[key] ?? kZihinTexts2[key]!, lang);
+String bt(String lang, String key) => Strings.pick(kZihinTexts[key] ?? kZihinTexts2[key] ?? kZihinTexts3[key]!, lang);
+
+/// İz Sürme B için dilin harf dizisi.
+List<String> trailLetters(String lang) {
+  final i = Strings.languages.indexOf(lang);
+  return kTrailLetters[i >= 0 && i < kTrailLetters.length ? i : 1];
+}
 String colorName(String lang, int i) => Strings.pick(kColorNames[i], lang);
