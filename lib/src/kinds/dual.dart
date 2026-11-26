@@ -6,6 +6,7 @@ import 'package:studio_core/app/services/audio.dart';
 import 'package:studio_core/core/rng.dart';
 
 import '../core.dart';
+import '../studio_chrome.dart';
 import '../texts.dart';
 
 // ---------------------------------------------------------------- Çift Görev
@@ -325,14 +326,14 @@ class _DualViewState extends State<_DualView> with Ticker {
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(started ? p.qs[qi].text : bt(lang, 'go'),
-                      style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w800, color: BColors.ink)),
+                      style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w800, color: Colors.white)),
                 ),
               ),
             ),
             SizedBox(
               height: 6,
               child: started
-                  ? LinearProgressIndicator(value: (1.0 - (ms - qStart) / window).clamp(0.0, 1.0).toDouble(), color: BColors.accent, backgroundColor: BColors.soft)
+                  ? LinearProgressIndicator(value: (1.0 - (ms - qStart) / window).clamp(0.0, 1.0).toDouble(), color: StudioLook.of(context).accent, backgroundColor: Colors.white24)
                   : null,
             ),
             const SizedBox(height: 8),

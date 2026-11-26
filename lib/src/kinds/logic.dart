@@ -5,6 +5,7 @@ import 'package:studio_core/app/services/audio.dart';
 import 'package:studio_core/core/rng.dart';
 
 import '../core.dart';
+import '../studio_chrome.dart';
 import '../texts.dart';
 import 'dual.dart';
 import 'faces.dart';
@@ -245,8 +246,8 @@ class _PatternViewState extends State<_PatternView> with Ticker {
                 height: s,
                 margin: const EdgeInsets.all(3),
                 alignment: Alignment.center,
-                decoration: BoxDecoration(border: Border.all(color: BColors.accent, width: 2), borderRadius: BorderRadius.circular(10)),
-                child: const Text('?', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: BColors.accent)),
+                decoration: BoxDecoration(border: Border.all(color: StudioLook.of(context).accent, width: 2), borderRadius: BorderRadius.circular(10)),
+                child: Text('?', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: StudioLook.of(context).accent)),
               ),
             ]),
           );

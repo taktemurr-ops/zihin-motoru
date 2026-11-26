@@ -5,6 +5,7 @@ import 'package:studio_core/app/services/audio.dart';
 import 'package:studio_core/core/rng.dart';
 
 import '../core.dart';
+import '../studio_chrome.dart';
 import '../texts.dart';
 
 /// Stroop renkleri (kırmızı, mavi, yeşil, sarı, mor, turuncu).
@@ -114,7 +115,7 @@ class _StroopViewState extends State<_StroopView> with Ticker {
           ),
         ),
       ),
-      Text(fb, style: TextStyle(fontSize: 26, color: fb == '✓' ? BColors.good : BColors.bad)),
+      Text(fb, style: TextStyle(fontSize: 26, color: fb == '✓' ? StudioLook.good : StudioLook.bad)),
       Padding(
         padding: const EdgeInsets.all(12),
         child: Wrap(spacing: 12, runSpacing: 12, alignment: WrapAlignment.center, children: [
@@ -384,10 +385,10 @@ class _MathViewState extends State<_MathView> with Ticker {
       BrainBar(lang: play.lang, left: clock(math.max(0, p.time - seconds)), status: '${idx + 1}/${p.qs.length} · ${bt(play.lang, 'correct')}: $good'),
       Expanded(
         child: Center(
-          child: FittedBox(child: Text('${q.text} = ?', style: const TextStyle(fontSize: 52, fontWeight: FontWeight.w900, color: BColors.ink))),
+          child: FittedBox(child: Text('${q.text} = ?', style: const TextStyle(fontSize: 52, fontWeight: FontWeight.w900, color: Colors.white))),
         ),
       ),
-      Text(fb, style: TextStyle(fontSize: 26, color: fb == '✓' ? BColors.good : BColors.bad)),
+      Text(fb, style: TextStyle(fontSize: 26, color: fb == '✓' ? StudioLook.good : StudioLook.bad)),
       Padding(
         padding: const EdgeInsets.all(12),
         child: GridView.count(
@@ -532,7 +533,8 @@ class _ReactionViewState extends State<_ReactionView> with Ticker {
   @override
   Widget build(BuildContext context) {
     final lang = play.lang;
-    final color = !showing || idx < 0 ? BColors.soft : (p.go[idx] ? BColors.good : BColors.bad);
+    final idle = Color.lerp(StudioLook.of(context).card, StudioLook.of(context).accent, 0.25)!;
+    final color = !showing || idx < 0 ? idle : (p.go[idx] ? BColors.good : BColors.bad);
     return Column(children: [
       BrainBar(lang: lang, left: started ? '${idx + 1}/${p.go.length}' : '', status: bt(lang, 'tapGreen')),
       Expanded(

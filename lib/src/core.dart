@@ -9,6 +9,7 @@ import 'package:studio_core/core/rng.dart';
 import 'package:studio_core/core/stats.dart';
 
 import 'texts.dart';
+import 'studio_chrome.dart';
 
 /// Bir zihin oyununun kurulmuş bölümü.
 abstract class BPuzzle {
@@ -131,8 +132,12 @@ class BrainStage extends StatelessWidget {
   final BrainRules rules;
   const BrainStage({super.key, required this.ctx, required this.rules});
 
+  /// Motorun bütün arayüzü (paneller, pencereler, düğmeler) onaylı koyu
+  /// tasarımda; tahta çizimleri kendi renklerini korur.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) => StudioChrome(child: Builder(builder: _build));
+
+  Widget _build(BuildContext context) {
     final lv = ctx.generated.puzzle as BLevel;
     return rules.kind.build(BrainPlay(ctx: ctx, puzzle: lv.puzzle, d: lv.d, seed: ctx.spec.seed));
   }
@@ -201,17 +206,31 @@ class BrainBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
+    final look = StudioLook.of(context);
     return Container(
       margin: const EdgeInsets.fromLTRB(8, 4, 8, 0),
       padding: const EdgeInsets.symmetric(horizontal: 12),
       height: 48,
-      decoration: BoxDecoration(color: scheme.surface.withValues(alpha: 0.92), borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.28),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: look.accent.withValues(alpha: 0.45), width: 1.2),
+      ),
       child: Row(children: [
-        Text(left, style: const TextStyle(fontWeight: FontWeight.w700)),
+        Text(left, style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16, color: look.number)),
         const SizedBox(width: 8),
-        Expanded(child: FittedBox(fit: BoxFit.scaleDown, child: Text(status, maxLines: 1))),
-        if (onHint != null) IconButton(tooltip: bt(lang, 'hint'), onPressed: onHint, icon: const Icon(Icons.lightbulb_outline)),
+        Expanded(
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(status, maxLines: 1, style: const TextStyle(fontWeight: FontWeight.w700, color: kStudioSubtle)),
+          ),
+        ),
+        if (onHint != null)
+          IconButton(
+            tooltip: bt(lang, 'hint'),
+            onPressed: onHint,
+            icon: const Icon(Icons.lightbulb_rounded, color: StudioLook.gold),
+          ),
       ]),
     );
   }

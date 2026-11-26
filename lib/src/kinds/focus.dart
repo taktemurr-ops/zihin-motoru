@@ -6,6 +6,7 @@ import 'package:studio_core/core/rng.dart';
 import 'package:studio_core/core/strings.dart';
 
 import '../core.dart';
+import '../studio_chrome.dart';
 import '../texts.dart';
 import '../words.dart';
 
@@ -169,7 +170,7 @@ class _DigitViewState extends State<_DigitView> with Ticker {
         child: FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(showing ? bt(lang, 'watch') : bt(lang, rd.back ? 'backward' : 'forward'),
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: rd.back ? BColors.bad : BColors.ink)),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: rd.back ? StudioLook.bad : Colors.white)),
         ),
       ),
       Expanded(
@@ -178,7 +179,7 @@ class _DigitViewState extends State<_DigitView> with Ticker {
           child: showing
               ? AnimatedSwitcher(
                   duration: const Duration(milliseconds: 120),
-                  child: Text(shown >= 0 ? '${rd.digits[shown]}' : '', key: ValueKey(shown), style: const TextStyle(fontSize: 120, fontWeight: FontWeight.w900, color: BColors.accent)),
+                  child: Text(shown >= 0 ? '${rd.digits[shown]}' : '', key: ValueKey(shown), style: TextStyle(fontSize: 120, fontWeight: FontWeight.w900, color: StudioLook.of(context).accent)),
                 )
               : Wrap(spacing: 6, runSpacing: 6, alignment: WrapAlignment.center, children: [
                   for (var i = 0; i < rd.digits.length; i++)
@@ -187,12 +188,12 @@ class _DigitViewState extends State<_DigitView> with Ticker {
                       height: 52,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: lastOk == null ? BColors.soft : (lastOk! ? BColors.good.withValues(alpha: 0.25) : BColors.bad.withValues(alpha: 0.2)),
+                        color: lastOk == null ? BColors.soft : (lastOk! ? const Color(0xFFCDEBD3) : const Color(0xFFF3D6CF)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
                         i < typed.length ? '${typed[i]}' : (lastOk == false ? '${want[i]}' : ''),
-                        style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: i < typed.length ? BColors.ink : BColors.good),
+                        style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: i < typed.length ? BColors.ink : const Color(0xFF2B6B47)),
                       ),
                     ),
                 ]),
@@ -710,7 +711,7 @@ class _WordViewState extends State<_WordView> with Ticker {
   }
 
   Widget _chip(String s, {Color? color, VoidCallback? onTap, bool sel = false}) => Material(
-        color: color ?? (sel ? BColors.accent.withValues(alpha: 0.2) : Colors.white),
+        color: color ?? (sel ? StudioLook.of(context).accent.withValues(alpha: 0.30) : Colors.white.withValues(alpha: 0.08)),
         borderRadius: BorderRadius.circular(14),
         child: InkWell(
           borderRadius: BorderRadius.circular(14),
@@ -718,8 +719,8 @@ class _WordViewState extends State<_WordView> with Ticker {
           child: Container(
             constraints: const BoxConstraints(minWidth: 96, minHeight: 48),
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(14), border: Border.all(color: sel ? BColors.accent : BColors.soft, width: 2)),
-            child: Text(s, textAlign: TextAlign.center, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(14), border: Border.all(color: sel ? StudioLook.of(context).accent : Colors.white38, width: 2)),
+            child: Text(s, textAlign: TextAlign.center, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white)),
           ),
         ),
       );
@@ -750,7 +751,7 @@ class _WordViewState extends State<_WordView> with Ticker {
         padding: const EdgeInsets.fromLTRB(12, 10, 12, 0),
         child: FittedBox(fit: BoxFit.scaleDown, child: Text(bt(lang, 'wasIn'), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700))),
       ),
-      Text('${q + 1}/${rd.test.length}', style: const TextStyle(color: Colors.black54)),
+      Text('${q + 1}/${rd.test.length}', style: const TextStyle(color: kStudioSubtle)),
       Expanded(
         child: Center(
           child: Padding(
@@ -758,7 +759,7 @@ class _WordViewState extends State<_WordView> with Ticker {
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(memWord(w, lang),
-                  style: TextStyle(fontSize: 44, fontWeight: FontWeight.w900, color: lastOk == null ? BColors.ink : (lastOk! ? BColors.good : BColors.bad))),
+                  style: TextStyle(fontSize: 44, fontWeight: FontWeight.w900, color: lastOk == null ? Colors.white : (lastOk! ? StudioLook.good : StudioLook.bad))),
             ),
           ),
         ),
